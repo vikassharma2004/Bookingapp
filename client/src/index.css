@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body, html {
+    overflow-x: hidden;  /* Prevent horizontal scrolling */
+     /* Prevent vertical scrolling */
+    height: 100%;        /* Ensure the body takes up the full height of the viewport */
+    margin: 0;           /* Remove any default margin */
+    padding: 0;          /* Remove any default padding */
+}
+input[type="text"],input[type="password"],
+input[type="email"],input[type="number"],
+input[type="tel"],
+textarea{
+    @apply w-full border my-1 py-2 px-3 rounded-2xl;
+}
+textarea{
+    height: 140px;
+}
+button{
+    @apply bg-gray-300;
+}
+button.primary{
+    background-color: #F5385D;
+    @apply bg-primary p-2 w-full text-white rounded-2xl;
+}
