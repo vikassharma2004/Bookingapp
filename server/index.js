@@ -16,6 +16,7 @@ const multer = require("multer");
 require("dotenv").config();
 
 const Mongo_Url = process.env.Mongo_Url;
+console.log(Mongo_Url);
 app.use(express.urlencoded({ extended: true })); // post request ka data parse krne ke liye
 app.use(express.json());
 app.use(cookieParser());
@@ -58,7 +59,7 @@ app.listen(port, () => {
   console.log(`app is running at ${port}`);
 });
 
-app.get("/index", (req, res) => {
+app.get("/", (req, res) => {
   res.send("index here");
 });
 
