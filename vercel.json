@@ -1,0 +1,23 @@
+{
+    "version": 2,
+   
+      
+    "builds": [
+        {
+            "buildCommand": "cd server; npm install --legacy-peer-deps ;node index.js"
+          },
+      {
+        "src": "server/package.json",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "client/package.json",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/server/index.js" }
+    ]
+  }
+  
+
