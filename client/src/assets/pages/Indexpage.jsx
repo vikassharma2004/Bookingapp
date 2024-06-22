@@ -40,7 +40,7 @@ const Indexpage = () => {
           <Link to={'/place/' + place._id} key={place._id}>
             <div className="bg-gray-500 rounded-2xl flex cursor-pointer">
               {place.photos?.[0] && (
-                <img src={'http://localhost:8080/uploads/' + place.photos?.[0]} className="rounded-2xl aspect-square object-cover" alt="" />
+                <img src={ place.photos?.[0]} className="rounded-2xl aspect-square object-cover" alt="" />
               )}
             </div>
             <h2 className='font-bold truncate'>{place.address}</h2>

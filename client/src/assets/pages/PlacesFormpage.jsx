@@ -6,7 +6,7 @@ import Perks from "./Perks";
 import {toast} from "react-toastify"
 const PlacesFormpage = () => {
   const { id } = useParams();
-
+const [uploading,setuploading]=useState(false)
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -61,7 +61,9 @@ const PlacesFormpage = () => {
     );
   }
   async function uploadphoto(ev) {
+    setuploading(true)
     const files = ev.target.files;
+    console.log(files);
     const data = new FormData();
 
     for (let i = 0; i < files.length; i++) {
@@ -75,25 +77,10 @@ const PlacesFormpage = () => {
     setAddedPhotos((prev) => {
       return [...prev, ...filenames];
     });
+    setuploading(false)
   }
 
-  async function addPhotoByLink(ev) {
-    ev.preventDefault();
-    const { data: filename } = await axios.post(
-      "http://localhost:8080/uploadbylink",
-      {
-        link: PhotoLink,
-      }
-    );
-    console.log(filename);
 
-    console.log("beforeadding", addedPhotos);
-    setAddedPhotos((prev) => {
-      return [...prev, filename];
-    });
-    setphotoLink("");
-    console.log("after adding", addedPhotos);
-  }
 
   async function savePlace(ev) {
     ev.preventDefault();
@@ -180,27 +167,13 @@ const PlacesFormpage = () => {
         />
 
         {preInput("Photos", "more = better")}
-        <div className="flex ">
-          <input
-            type="text"
-            placeholder={"Add Using a Link ....."}
-            className="w-full p-2 border border-gray-300 rounded mt-2"
-            value={PhotoLink}
-            onChange={(e) => setphotoLink(e.target.value)}
-          />
-          <button
-            onClick={addPhotoByLink}
-            className="primary rounded-2xl W-initial"
-          >
-            Add Photo
-          </button>
-        </div>
+       
         <div className=" grid grid-cols-3  gap-2 md:grid-cols-4  lg:grid-cols-6    border border-gray-300 p-2 mt-2">
           {addedPhotos.length > 0 &&
             addedPhotos.map((link) => (
               <div className="shadow shadow-md h-32 flex relative" key={link}>
                 <img
-                  src={`http://localhost:8080/uploads/${link}`}
+                  src={`${link}`}
                   alt="image"
                   className="rounded-2xl w-full object-cover   "
                 ></img>
@@ -282,7 +255,7 @@ const PlacesFormpage = () => {
                 d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
               />
             </svg>
-            Upload
+           {uploading?"uploading":"upload"}
           </label>
         </div>
 

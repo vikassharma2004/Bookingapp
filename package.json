@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "dev": "nodemon server/index.js",
+    "dev": "nodemon server/index.js",
     "start": "node  server/index.js"
   },
   "keywords": [],
   "author": "vikas",
   "license": "ISC",
   "dependencies": {
-   
     "bcryptjs": "^2.4.3",
-    "cloudinary": "^2.2.0",
+    "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

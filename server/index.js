@@ -12,7 +12,8 @@ const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const fs = require("fs");
 const multer = require("multer");
-
+const cloudinary = require('cloudinary').v2
+const {CloudinaryStorage}=require("multer-storage-cloudinary")
 require("dotenv").config();
 
 const Mongo_Url = process.env.Mongo_Url;
@@ -161,22 +162,31 @@ app.post("/uploadbylink", async (req, res) => {
     res.status(500).json(e);
   }
 });
-
+cloudinary.config({
+  cloud_name:'dc9gl8qud',
+api_key:'959818847494536',
+api_secret:'WYCJ9Oifd7QBRTJp1G9GUtXjIHU'
+})
 // Upload images
-const upload = multer({ dest: "uploads/" });
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: { 
+    folder: "BOOKINGAPP",
+    allowedformat: ["png","jpeg","jpg","BMP","SVG"] // supports promises as well
+  },
+});
+const upload = multer({ storage: storage });
 app.post("/upload", upload.array("photos", 100), async function (req, res) {
-  await mongoose.connect(Mongo_Url);
   try {
-    const uploadedfiles = [];
-    for (let i = 0; i < req.files.length; i++) {
-      const { path, originalname } = req.files[i];
-      const parts = originalname.split(".");
-      const ext = parts[parts.length - 1];
-      const newpath = path + "." + ext;
-      fs.renameSync(path, newpath);
-      uploadedfiles.push(newpath.replace("uploads\\", ""));
+    await mongoose.connect(Mongo_Url);
+
+    const files = req.files;
+    if (files && files.length > 0) {
+      const urls = files.map(file => file.path);
+      res.json( urls );
+    } else {
+      res.status(400).json({ error: 'No files uploaded' });
     }
-    res.json(uploadedfiles);
   } catch (e) {
     res.status(500).json(e);
   }
