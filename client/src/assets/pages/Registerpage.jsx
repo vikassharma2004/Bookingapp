@@ -11,7 +11,7 @@ export default function RegisterPage() {
   async function registerUser(ev) {
     ev.preventDefault();
     try {
-      const response= await axios.post('http://localhost:8080/register ', {
+      const response= await axios.post('bookingapi-gamma.vercel.app/register ', {
         name,
         email,
         password,
