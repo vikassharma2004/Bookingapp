@@ -16,7 +16,7 @@ export default function AccountPage() {
   // logout function
   async function logout() {
     try {
-      await axios.post("http://localhost:8080/logout");
+      await axios.post("bookingapi-gamma.vercel.app/logout");
       setUser(null);
       setRedirect("/");
     } catch (error) {
