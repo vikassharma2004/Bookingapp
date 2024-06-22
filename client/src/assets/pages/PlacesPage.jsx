@@ -13,7 +13,7 @@ const PlacesPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/user-places")
+      .get("bookingapi-gamma.vercel.app/user-places")
 
       .then(({data}) => {
         setPlaces(data)
