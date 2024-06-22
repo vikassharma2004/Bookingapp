@@ -27,7 +27,7 @@ const [uploading,setuploading]=useState(false)
     }
 
     axios
-      .get(`http://localhost:8080/places/${id}`)
+      .get(`bookingapi-gamma.vercel.app/places/${id}`)
       .then((response) => {
         const { data } = response;
         setTitle(data.title);
@@ -70,7 +70,7 @@ const [uploading,setuploading]=useState(false)
       data.append("photos", files[i]);
     }
 
-    const response = await axios.post("http://localhost:8080/upload", data, {
+    const response = await axios.post("bookingapi-gamma.vercel.app/upload", data, {
       headers: { "content-type": "multipart/form-data" },
     });
     const { data: filenames } = response;
@@ -98,7 +98,7 @@ const [uploading,setuploading]=useState(false)
     };
     if (id) {
       //  update
-      await axios.put("http://localhost:8080/places", {
+      await axios.put("bookingapi-gamma.vercel.app/places", {
         id,
         ...placedata,
       });
@@ -109,7 +109,7 @@ const [uploading,setuploading]=useState(false)
 
     } else {
       //  create
-      await axios.post("http://localhost:8080/places", {
+      await axios.post("bookingapi-gamma.vercel.app/places", {
         title,
         address,
         addedPhotos,
