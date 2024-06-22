@@ -3,9 +3,7 @@
    
       
     "builds": [
-        {
-            "buildCommand": "cd server; npm install --legacy-peer-deps ;node index.js"
-          },
+       
       {
         "src": "server/package.json",
         "use": "@vercel/node"
