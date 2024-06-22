@@ -15,7 +15,7 @@ const IndividualPlace = () => {
     }
 
     axios
-      .get(`http://localhost:8080/places/${id}`)
+      .get(`bookingapi-gamma.vercel.app/places/${id}`)
       .then((response) => {
        
         setPlace(response.data);
