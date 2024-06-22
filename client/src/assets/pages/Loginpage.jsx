@@ -19,7 +19,7 @@ const Loginpage = () => {
     ev.preventDefault();
     try {
       const {data} = await axios.post(
-        "http://localhost:8080/login",
+        "bookingapi-gamma.vercel.app/login",
         { email, password },
         { withCredentials: true }
       );
