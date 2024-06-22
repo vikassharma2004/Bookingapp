@@ -17,7 +17,7 @@ const BookingWidget = ({ place }) => {
   }
   async function bookThisPlace() {
     try {
-      const response = await axios.post("http://localhost:8080/bookings", {
+      const response = await axios.post("bookingapi-gamma.vercel.app/bookings", {
         checkIn,
         checkOut,
         numberOfGuests,
