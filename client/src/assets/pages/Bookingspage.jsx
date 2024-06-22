@@ -8,7 +8,7 @@ import BookingDates from "../../BookingDates";
 const Bookingspage = () => {
   const [bookings,setBookings] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8080/booking').then(response => {
+    axios.get('bookingapi-gamma.vercel.app/booking').then(response => {
       setBookings(response.data);
       console.log(bookings);
     });
