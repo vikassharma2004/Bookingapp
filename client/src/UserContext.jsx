@@ -9,7 +9,7 @@ export function UserContextProvider({children}) {
   
   useEffect(() => {
     if (!user) {
-      axios.get('http://localhost:8080/profile').then(({data}) => {
+      axios.get('bookingapi-gamma.vercel.app/profile').then(({data}) => {
         setUser(data);
   setReady(true)
       });
