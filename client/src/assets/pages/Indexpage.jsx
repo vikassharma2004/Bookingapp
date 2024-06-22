@@ -11,7 +11,7 @@ const Indexpage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/indexplaces')
+    axios.get('bookingapi-gamma.vercel.app/indexplaces')
       .then(response => {
         setData(response.data);
         setLoading(false);
